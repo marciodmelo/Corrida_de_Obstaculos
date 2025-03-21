@@ -1,0 +1,14 @@
+# C
+COLOR_ORANGE = (255,128,0)
+COLOR_WHITE = (255,255,255)
+COLOR_YELlOW = (255, 234, 0)
+
+# M
+MENU_OPTION = (
+    'New Game',
+    'Exit'
+)
+
+# W
+WIN_WIDTH = 800
+WIN_HEIGHT = 450
