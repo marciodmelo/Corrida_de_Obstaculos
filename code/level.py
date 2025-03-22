@@ -4,21 +4,24 @@ import sys
 import pygame.display
 from pygame import Surface, Rect
 from pygame.font import Font
-from code.const import COLOR_WHITE, WIN_HEIGHT, EVENT_OBSTACLE
+from code.const import COLOR_WHITE, WIN_HEIGHT, EVENT_OBSTACLE, MENU_OPTION
 from code.entity import Entity
 from code.entityFactory import EntityFactory
 from code.player import Player
 
 
 class Level:
-    def __init__(self, window, name):
+    def __init__(self, window, name, game_mode):
         self.window = window
         self.name = name
+        self.game_mode = game_mode
+        self.timeout = 20000
         self.entity_list: list[Entity] = []
         self.entity_list.extend(EntityFactory.get_entity('Level1Bg'))
-        self.entity_list.append(EntityFactory.get_entity('Player'))
-        pygame.time.set_timer(EVENT_OBSTACLE, 2000)
-        self.timeout = 20000
+        self.entity_list.append(EntityFactory.get_entity('Player1'))
+        pygame.time.set_timer(EVENT_OBSTACLE, 1000)
+        if game_mode == MENU_OPTION[1]:
+            self.entity_list.append(EntityFactory.get_entity('Player2'))
 
     def run(self, ):
         pygame.mixer_music.load(f'./asset/{self.name}.mp3')
