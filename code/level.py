@@ -4,7 +4,7 @@ import sys
 import pygame.display
 from pygame import Surface, Rect
 from pygame.font import Font
-from code.const import COLOR_WHITE, WIN_HEIGHT
+from code.const import COLOR_WHITE, WIN_HEIGHT, EVENT_OBSTACLE
 from code.entity import Entity
 from code.entityFactory import EntityFactory
 from code.player import Player
@@ -17,6 +17,7 @@ class Level:
         self.entity_list: list[Entity] = []
         self.entity_list.extend(EntityFactory.get_entity('Level1Bg'))
         self.entity_list.append(EntityFactory.get_entity('Player'))
+        pygame.time.set_timer(EVENT_OBSTACLE, 2000)
         self.timeout = 20000
 
     def run(self, ):
@@ -32,6 +33,9 @@ class Level:
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     sys.exit()
+
+                if event.type == EVENT_OBSTACLE:
+                    self.entity_list.append(EntityFactory.get_entity('Obstacle'))
 
             self.level_text(14, f'{self.name} - Timeout: {self.timeout / 1000 :.1f}s', COLOR_WHITE, (10, 5))
             self.level_text(14, f'fps: {clock.get_fps() :.0f}', COLOR_WHITE, (10, WIN_HEIGHT - 35))
