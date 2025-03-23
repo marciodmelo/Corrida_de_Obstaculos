@@ -67,7 +67,8 @@ EVENT_TIMEOUT = pygame.USEREVENT + 2
 MENU_OPTION = (
     'New Game - 1 Player',
     'New Game - 2 Player',
-    'Exit'
+    'Score',
+    'Exit',
 )
 
 # P
@@ -86,3 +87,21 @@ TIMEOUT_LEVEL = 20000
 # W
 WIN_WIDTH = 800
 WIN_HEIGHT = 450
+
+# S
+SCORE_POS = {
+    'Title': (WIN_WIDTH / 2, 140),
+    'EnterName': (WIN_WIDTH / 2, 170),
+    'Label': (WIN_WIDTH / 2, 210),
+    'Name': (WIN_WIDTH / 2, 190),
+    0: (WIN_WIDTH / 2, 240),
+    1: (WIN_WIDTH / 2, 260),
+    2: (WIN_WIDTH / 2, 280),
+    3: (WIN_WIDTH / 2, 300),
+    4: (WIN_WIDTH / 2, 320),
+    5: (WIN_WIDTH / 2, 340),
+    6: (WIN_WIDTH / 2, 360),
+    7: (WIN_WIDTH / 2, 380),
+    8: (WIN_WIDTH / 2, 400),
+    9: (WIN_WIDTH / 2, 420),
+}
