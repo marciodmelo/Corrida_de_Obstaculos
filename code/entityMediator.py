@@ -20,9 +20,9 @@ class EntityMediator:
             valid_interation = True
 
         if valid_interation:
-            if (ent2.rect.bottom > ent1.rect.bottom and
-                    ent2.rect.right > ent1.rect.left and
-                    ent2.rect.left < ent1.rect.right):
+            if (ent1.rect.left < ent2.rect.right <= ent1.rect.left + 10 and
+                    ent1.rect.bottom - 30 <= ent2.rect.top + (
+                            ent2.rect.height / 2) <= ent1.rect.bottom):
 
                 ent1.health -= ent2.damage
                 ent2.health -= ent1.damage

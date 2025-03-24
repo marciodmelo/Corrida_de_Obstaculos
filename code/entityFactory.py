@@ -10,17 +10,17 @@ from code.player import Player
 class EntityFactory:
 
     @staticmethod
-    def get_entity(entity_name: str, position=(0,0)):
+    def get_entity(entity_name: str, position=(0, 0)):
         match entity_name:
             case ('Level1Bg'):
                 list_bg = []
                 for i in range(6):
-                    list_bg.append(Background(f'Level1Bg{i}', (0,0)))
+                    list_bg.append(Background(f'Level1Bg{i}', (0, 0)))
                     list_bg.append(Background(f'Level1Bg{i}', (-WIN_WIDTH, 0)))
                 return list_bg
             case 'Player1':
-                return Player('Player1', (WIN_WIDTH- 220, 300))
+                return Player('Player1', (WIN_WIDTH - 220, 300))
             case 'Player2':
                 return Player('Player2', (WIN_WIDTH - 200, 345))
             case 'Obstacle':
-                return  Obstacle('Obstacle', (0, random.randint(330, 390)))
+                return Obstacle('Obstacle', (0, random.randint(335, 400)))

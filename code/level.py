@@ -2,10 +2,10 @@
 # -*- coding: utf-8 -*-
 import sys
 import pygame.display
-from pygame import Surface, Rect
+from pygame import Surface, Rect, KEYDOWN, K_ESCAPE
 from pygame.font import Font
 from code.const import C_WHITE, WIN_HEIGHT, EVENT_OBSTACLE, MENU_OPTION, C_GREEN, C_CYAN, EVENT_TIMEOUT, TIMEOUT_STEP, \
-    TIMEOUT_LEVEL, SPAWN_TIME
+    TIMEOUT_LEVEL, SPAWN_TIME_PLAYER1, C_BLACK, C_RED, SPAWN_TIME_PLAYER2
 from code.entity import Entity
 from code.entityFactory import EntityFactory
 from code.entityMediator import EntityMediator
@@ -23,8 +23,9 @@ class Level:
         player = EntityFactory.get_entity('Player1')
         player.score = player_score[0]
         self.entity_list.append(player)
-        pygame.time.set_timer(EVENT_OBSTACLE, SPAWN_TIME)
+        pygame.time.set_timer(EVENT_OBSTACLE, SPAWN_TIME_PLAYER1)
         if game_mode == MENU_OPTION[1]:
+            pygame.time.set_timer(EVENT_OBSTACLE, SPAWN_TIME_PLAYER2)
             player = EntityFactory.get_entity('Player2')
             player.score = player_score[1]
             self.entity_list.append(player)
@@ -41,13 +42,16 @@ class Level:
                 ent.move()
 
                 if ent.name == 'Player1':
-                    self.level_text(14, f'Player1 - Score: {ent.score}', C_GREEN, (10, 25))
+                    self.level_text(14, f'Player1 - Ponto(s): {ent.score}', C_RED, (10, 25))
                 if ent.name == 'Player2':
-                    self.level_text(14, f'Player2 - Score: {ent.score}', C_CYAN, (10, 45))
+                    self.level_text(14, f'Player2 - Ponto(s): {ent.score}', C_CYAN, (10, 45))
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     sys.exit()
+                elif event.type == KEYDOWN:
+                    if event.key == K_ESCAPE:
+                        return
 
                 if event.type == EVENT_OBSTACLE:
                     self.entity_list.append(EntityFactory.get_entity('Obstacle'))
@@ -62,9 +66,7 @@ class Level:
                                 player_score[1] = ent.score
                         return True
 
-            self.level_text(14, f'{self.name} - Timeout: {self.timeout / 1000 :.1f}s', C_WHITE, (10, 5))
-            self.level_text(14, f'fps: {clock.get_fps() :.0f}', C_WHITE, (10, WIN_HEIGHT - 35))
-            self.level_text(14, f'entidades: {len(self.entity_list)}', C_WHITE, (10, WIN_HEIGHT - 20))
+            self.level_text(14, f'Tempo de Jogo: {self.timeout / 1000 :.1f}s', C_BLACK, (10, 5))
             pygame.display.flip()
 
             # Collisions

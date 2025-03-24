@@ -7,8 +7,8 @@ C_WHITE = (255, 255, 255)
 C_YELlOW = (255, 234, 0)
 C_BLACK = (0, 0, 0)
 C_RED = (255, 0, 0)
-C_GREEN = (0,128,0)
-C_CYAN = (0,128,128)
+C_GREEN = (0, 128, 0)
+C_CYAN = (0, 128, 128)
 
 # E
 ENTITY_SPEED = {
@@ -65,10 +65,10 @@ EVENT_TIMEOUT = pygame.USEREVENT + 2
 
 # M
 MENU_OPTION = (
-    'New Game - 1 Player',
-    'New Game - 2 Player',
-    'Score',
-    'Exit',
+    'Novo Jogo - 1 Player',
+    'Novo Jogo - 2 Player',
+    'Top 10',
+    'Sair',
 )
 
 # P
@@ -78,11 +78,12 @@ PLAYER_KEY_LEFT = {'Player1': pygame.K_LEFT, 'Player2': pygame.K_a}
 PLAYER_KEY_RIGHT = {'Player1': pygame.K_RIGHT, 'Player2': pygame.K_d}
 
 # S
-SPAWN_TIME = 1000
+SPAWN_TIME_PLAYER1 = 300
+SPAWN_TIME_PLAYER2 = 100
 
 # T
 TIMEOUT_STEP = 100
-TIMEOUT_LEVEL = 20000
+TIMEOUT_LEVEL = 30000
 
 # W
 WIN_WIDTH = 800
@@ -90,18 +91,18 @@ WIN_HEIGHT = 450
 
 # S
 SCORE_POS = {
-    'Title': (WIN_WIDTH / 2, 140),
-    'EnterName': (WIN_WIDTH / 2, 170),
-    'Label': (WIN_WIDTH / 2, 210),
-    'Name': (WIN_WIDTH / 2, 190),
-    0: (WIN_WIDTH / 2, 240),
-    1: (WIN_WIDTH / 2, 260),
-    2: (WIN_WIDTH / 2, 280),
-    3: (WIN_WIDTH / 2, 300),
-    4: (WIN_WIDTH / 2, 320),
-    5: (WIN_WIDTH / 2, 340),
-    6: (WIN_WIDTH / 2, 360),
-    7: (WIN_WIDTH / 2, 380),
-    8: (WIN_WIDTH / 2, 400),
-    9: (WIN_WIDTH / 2, 420),
+    'Title': (WIN_WIDTH / 2, 143),
+    'EnterName': (WIN_WIDTH / 2, 173),
+    'Label': (WIN_WIDTH / 2, 213),
+    'Name': (WIN_WIDTH / 2, 193),
+    0: (WIN_WIDTH / 2, 243),
+    1: (WIN_WIDTH / 2, 263),
+    2: (WIN_WIDTH / 2, 283),
+    3: (WIN_WIDTH / 2, 303),
+    4: (WIN_WIDTH / 2, 323),
+    5: (WIN_WIDTH / 2, 343),
+    6: (WIN_WIDTH / 2, 363),
+    7: (WIN_WIDTH / 2, 383),
+    8: (WIN_WIDTH / 2, 403),
+    9: (WIN_WIDTH / 2, 423),
 }
