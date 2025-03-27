@@ -1,16 +1,15 @@
-# CONST
-# C
+# Constantes para cores
 import pygame
 
 C_ORANGE = (255, 128, 0)
 C_WHITE = (255, 255, 255)
-C_YELlOW = (255, 234, 0)
+C_YELLOW = (255, 234, 0)  # Corrigido: 'YELlOW' para 'YELLOW'
 C_BLACK = (0, 0, 0)
 C_RED = (255, 0, 0)
 C_GREEN = (0, 128, 0)
 C_CYAN = (0, 128, 128)
 
-# E
+# Velocidade das entidades (speed da movimentação)
 ENTITY_SPEED = {
     'Level1Bg0': 0,
     'Level1Bg1': 1,
@@ -23,8 +22,10 @@ ENTITY_SPEED = {
     'Obstacle': 6,
 }
 
+# Evento de Obstáculo
 EVENT_OBSTACLE = pygame.USEREVENT + 1
 
+# Saúde das entidades (em pontos)
 ENTITY_HEALTH = {
     'Level1Bg0': 999,
     'Level1Bg1': 999,
@@ -37,6 +38,7 @@ ENTITY_HEALTH = {
     'Obstacle': 1,
 }
 
+# Dano causado por cada entidade
 ENTITY_DAMAGE = {
     'Level1Bg0': 0,
     'Level1Bg1': 0,
@@ -49,6 +51,7 @@ ENTITY_DAMAGE = {
     'Obstacle': 1,
 }
 
+# Pontuação das entidades
 ENTITY_SCORE = {
     'Level1Bg0': 0,
     'Level1Bg1': 0,
@@ -61,9 +64,10 @@ ENTITY_SCORE = {
     'Obstacle': 1,
 }
 
+# Evento de tempo limite
 EVENT_TIMEOUT = pygame.USEREVENT + 2
 
-# M
+# Opções do menu principal
 MENU_OPTION = (
     'Novo Jogo - 1 Player',
     'Novo Jogo - 2 Player',
@@ -71,25 +75,28 @@ MENU_OPTION = (
     'Sair',
 )
 
-# P
+# Fonte para os textos
+F_FONT_1 = 'Consolas'
+
+# Teclas de controle para os jogadores
 PLAYER_KEY_UP = {'Player1': pygame.K_UP, 'Player2': pygame.K_w}
 PLAYER_KEY_DOWN = {'Player1': pygame.K_DOWN, 'Player2': pygame.K_s}
 PLAYER_KEY_LEFT = {'Player1': pygame.K_LEFT, 'Player2': pygame.K_a}
 PLAYER_KEY_RIGHT = {'Player1': pygame.K_RIGHT, 'Player2': pygame.K_d}
 
-# S
+# Tempos de spawn dos jogadores
 SPAWN_TIME_PLAYER1 = 300
 SPAWN_TIME_PLAYER2 = 100
 
-# T
+# Tempo limite e passo do timeout
 TIMEOUT_STEP = 100
 TIMEOUT_LEVEL = 30000
 
-# W
+# Dimensões da janela do jogo
 WIN_WIDTH = 800
 WIN_HEIGHT = 450
 
-# S
+# Posições do score na tela
 SCORE_POS = {
     'Title': (WIN_WIDTH / 2, 143),
     'EnterName': (WIN_WIDTH / 2, 173),

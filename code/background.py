@@ -5,7 +5,7 @@ from code.entity import Entity
 
 
 class Background(Entity):
-    def __init__(self, name: str, position: tuple):
+    def __init__(self, name: str, position: tuple[int, int]):
         super().__init__(name, position)
 
     def move(self):

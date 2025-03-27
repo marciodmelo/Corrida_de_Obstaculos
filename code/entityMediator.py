@@ -3,56 +3,44 @@ from code.entity import Entity
 from code.obstacle import Obstacle
 from code.player import Player
 
-
 class EntityMediator:
-    @staticmethod
-    def __verify_collision_window(ent: Entity):
-        if isinstance(ent, Obstacle):
-            if ent.rect.right > WIN_WIDTH:
-                ent.health = 0
 
     @staticmethod
-    def __verify_collision_entity(ent1, ent2):
-        valid_interation = False
-        if isinstance(ent1, Player) and isinstance(ent2, Obstacle):
-            valid_interation = True
-        elif isinstance(ent1, Obstacle) and isinstance(ent2, Player):
-            valid_interation = True
+    def __verify_collision_window(ent: Entity) -> None:
+        """Verifica se um obstáculo saiu da tela e deve ser removido."""
+        if isinstance(ent, Obstacle) and ent.rect.right > WIN_WIDTH:
+            ent.health = 0
 
-        if valid_interation:
+    @staticmethod
+    def __verify_collision_entity(ent1: Entity, ent2: Entity) -> None:
+        """Verifica e aplica dano em caso de colisão entre jogador e obstáculo."""
+        if {type(ent1), type(ent2)} == {Player, Obstacle}:  # Confirma se um é Player e o outro é Obstacle
             if (ent1.rect.left < ent2.rect.right <= ent1.rect.left + 10 and
-                    ent1.rect.bottom - 30 <= ent2.rect.top + (
-                            ent2.rect.height / 2) <= ent1.rect.bottom):
+                    ent1.rect.bottom - 30 <= ent2.rect.top + (ent2.rect.height / 2) <= ent1.rect.bottom):
 
                 ent1.health -= ent2.damage
                 ent2.health -= ent1.damage
-                ent1.last_dmg = ent2.name
-                ent2.last_dmg = ent1.name
-
+                ent1.last_dmg, ent2.last_dmg = ent2.name, ent1.name
 
     @staticmethod
-    def give_score(obstacle: Obstacle, entity_listy: list[Entity]):
-        if obstacle.last_dmg == 'Player1':
-            for ent in entity_listy:
-                if ent.name == 'Player1':
-                    ent.score += obstacle.score
-        elif obstacle.last_dmg == 'Player2':
-            for ent in entity_listy:
-                if ent.name == 'Player2':
-                    ent.score += obstacle.score
+    def give_score(obstacle: Obstacle, entity_list: list[Entity]) -> None:
+        """Atribui pontos ao jogador correspondente quando um obstáculo é destruído."""
+        for ent in entity_list:
+            if ent.name == obstacle.last_dmg:
+                ent.score += obstacle.score
 
     @staticmethod
-    def verify_collision(entity_list: list[Entity]):
-        for i in range(len(entity_list)):
-            entity1 = entity_list[i]
+    def verify_collision(entity_list: list[Entity]) -> None:
+        """Verifica todas as colisões entre entidades da lista."""
+        for i, entity1 in enumerate(entity_list):
             EntityMediator.__verify_collision_window(entity1)
-            for j in range(i + 1, len(entity_list)):
-                entity2 = entity_list[j]
+            for entity2 in entity_list[i + 1:]:  # Evita verificações duplicadas
                 EntityMediator.__verify_collision_entity(entity1, entity2)
 
     @staticmethod
-    def verify_health(entity_list: list[Entity]):
-        for ent in entity_list:
+    def verify_health(entity_list: list[Entity]) -> None:
+        """Remove entidades sem vida e atribui pontos caso seja um obstáculo."""
+        for ent in entity_list[:]:  # Iterar sobre uma cópia para evitar erro de remoção
             if ent.health <= 0:
                 if isinstance(ent, Obstacle):
                     EntityMediator.give_score(ent, entity_list)

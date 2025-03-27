@@ -5,8 +5,10 @@ from code.entity import Entity
 
 
 class Obstacle(Entity):
-    def __init__(self, name: str, position: tuple):
+    def __init__(self, name: str, position: tuple[int, int]):
+        """Inicializa um obstáculo na posição especificada."""
         super().__init__(name, position)
 
-    def move(self, ):
+    def move(self) -> None:
+        """Move o obstáculo horizontalmente conforme a velocidade definida."""
         self.rect.centerx += ENTITY_SPEED[self.name]
